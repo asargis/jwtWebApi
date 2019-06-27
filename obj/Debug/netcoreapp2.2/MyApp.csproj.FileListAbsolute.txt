@@ -1,0 +1,14 @@
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.csprojAssemblyReference.cache
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.csproj.CoreCompileInputs.cache
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.RazorAssemblyInfo.cache
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.RazorAssemblyInfo.cs
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.AssemblyInfoInputs.cache
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.AssemblyInfo.cs
+C:\Users\asarg\source\repos\MyApp\bin\Debug\netcoreapp2.2\MyApp.deps.json
+C:\Users\asarg\source\repos\MyApp\bin\Debug\netcoreapp2.2\MyApp.runtimeconfig.json
+C:\Users\asarg\source\repos\MyApp\bin\Debug\netcoreapp2.2\MyApp.runtimeconfig.dev.json
+C:\Users\asarg\source\repos\MyApp\bin\Debug\netcoreapp2.2\MyApp.dll
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.RazorTargetAssemblyInfo.cache
+C:\Users\asarg\source\repos\MyApp\bin\Debug\netcoreapp2.2\MyApp.pdb
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.dll
+C:\Users\asarg\source\repos\MyApp\obj\Debug\netcoreapp2.2\MyApp.pdb
