@@ -27,9 +27,31 @@ namespace MyApp.Controllers
 		// GET: api/links
 		[HttpGet]
 		[Produces("application/json")]
-        public async Task<ActionResult<IEnumerable<UsefulLinks>>> Get()
+        public async Task<ActionResult<IEnumerable<UsefulLinks>>> Get([FromQuery]int page = 1, [FromQuery]int size = 10)
         {
-            return Ok(await _appDbContext.UsefulLinks.ToListAsync());
+            if (page > 0 && size > 0)
+            {
+                var items = await _appDbContext.UsefulLinks.Skip((page - 1) * size).Take(size).ToListAsync();
+                var count = await _appDbContext.UsefulLinks.CountAsync();
+                var totalPages = (int)Math.Ceiling(count / (float)size);
+                var firstPage = 1; // obviously
+                var lastPage = totalPages;
+                var prevPage = page > firstPage ? page - 1 : firstPage;
+                var nextPage = page < lastPage ? page + 1 : lastPage;
+
+                return Ok(new {
+                    items,
+                    totalPages,
+                    firstPage,
+                    lastPage,
+                    prevPage,
+                    nextPage
+                });
+            }
+            else
+            {
+                return BadRequest("error");
+            }
         }
 
         // GET: api/Links/5
@@ -41,7 +63,7 @@ namespace MyApp.Controllers
 
             if (usefulLinks == null)
             {
-                return BadRequest();
+                return BadRequest("error");
             }
 
             return Ok(usefulLinks);
@@ -53,7 +75,7 @@ namespace MyApp.Controllers
         {
             if (id != usefulLinks.Id)
             {
-                return BadRequest();
+                return BadRequest("error");
             }
 
             _appDbContext.Entry(usefulLinks).State = EntityState.Modified;

@@ -121,7 +121,7 @@ namespace MyApp
 			builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
 			builder.AddDefaultTokenProviders();
 
-			services.AddAutoMapper();
+			services.AddAutoMapper(typeof(Startup));
 			services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 		}
 

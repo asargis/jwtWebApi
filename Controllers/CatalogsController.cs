@@ -57,7 +57,7 @@ namespace MyApp.Controllers
 
 			if (catalog == null)
 			{
-				return BadRequest();
+				return BadRequest("error");
 			}
 
 			return Ok(catalog);
@@ -69,7 +69,7 @@ namespace MyApp.Controllers
 		{
 			if (id != model.Id)
 			{
-				return BadRequest();
+				return BadRequest("error");
 			}
 
 			_appDbContext.Entry(model).State = EntityState.Modified;
@@ -82,7 +82,7 @@ namespace MyApp.Controllers
 			{
 				if (!UsefulLinksCategoriesExists(id))
 				{
-					return BadRequest();
+					return BadRequest("error");
 				}
 				else
 				{
@@ -106,7 +106,7 @@ namespace MyApp.Controllers
 			}
 			catch
 			{
-				return BadRequest();
+				return BadRequest("error");
 			}
 		}
 
@@ -118,13 +118,13 @@ namespace MyApp.Controllers
 			var usefulLinksCategories = await _appDbContext.UsefulLinksCategories.FindAsync(id);
 			if (usefulLinksCategories == null)
 			{
-				return BadRequest();
+				return BadRequest("error");
 			}
 
 			_appDbContext.UsefulLinksCategories.Remove(usefulLinksCategories);
 			await _appDbContext.SaveChangesAsync();
 
-			return usefulLinksCategories;
+			return Ok(usefulLinksCategories);
 		}
 
 

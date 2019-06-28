@@ -32,8 +32,8 @@ namespace MyApp.Controllers
 			_appDbContext = appDbContext;
 		}
 
-		// POST api/employee/add
-		[HttpPost("employees/add")]
+		// POST api/admin/employees
+		[HttpPost("employees")]
 		public async Task<IActionResult> Post([FromBody]RegistrationViewModel model)
 		{
 			if (!ModelState.IsValid)
@@ -60,38 +60,8 @@ namespace MyApp.Controllers
 			return new OkObjectResult("Account created");
 		}
 
-		[Produces("application/json")]
-		[HttpGet("employees/all")]
-		public async Task<IActionResult> Get()
-		{
-			try
-			{
-				var employees = await _appDbContext.Employees.ToListAsync();
-				return Ok(employees);
-
-			}
-			catch
-			{
-				return BadRequest();
-			}
-		}
-
-		[Produces("application/json")]
-		[HttpGet("employees/{id}")]
-		public async Task<IActionResult> Get(int? id)
-		{
-			try
-			{
-				var employee = await _appDbContext.Employees.FindAsync(id);
-				return Ok(employee);
-			}
-			catch
-			{
-				return BadRequest();
-			}
-		}
-
-		[HttpPost("roles/add")]
+        // POST: /api/admin/roles
+		[HttpPost("roles")]
 		public async Task<IActionResult> Post([FromBody]AddRoleViewModel model)
 		{
 			if (!ModelState.IsValid)
@@ -110,7 +80,8 @@ namespace MyApp.Controllers
 			}
 		}
 
-		[HttpPost("user/roles")]
+        // POST: /api/admin/user/roles
+        [HttpPost("user/roles")]
 		public async Task<IActionResult> Post([FromBody]UserRolesViewModel model)
 		{
 			if (!ModelState.IsValid)
@@ -135,34 +106,41 @@ namespace MyApp.Controllers
 			}
 			else
 			{
-				return BadRequest("User is not found");
+				return BadRequest("User not found");
 			}
 		}
 
-		/*		[HttpPost("roles/edit/")]
-				public async Task<IActionResult> Post([FromBody]ChangeRoleViewModel model)
-				{
-					if (!ModelState.IsValid)
-					{
-						return BadRequest(ModelState);
-					}
+        // GET: /api/admin/employees
+        [Produces("application/json")]
+        [HttpGet("employees")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var employees = await _appDbContext.Employees.ToListAsync();
+                return Ok(employees);
 
-					AppUser user = await _userManager.FindByIdAsync(model.UserId);
+            }
+            catch
+            {
+                return BadRequest("error");
+            }
+        }
 
-					//var userRoles = await _userManager.GetRolesAsync(user);
-					//var allRoles = await _roleManager.Roles.ToListAsync();
-
-					var result = await _userManager.AddToRolesAsync(user, model.Roles);
-
-					if (!result.Succeeded)
-					{
-						return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
-					}
-
-					return new OkObjectResult("success");
-
-				}*/
-
-
-	}
+        // GET: /api/admin/empolyees/5
+        [Produces("application/json")]
+        [HttpGet("employees/{id}")]
+        public async Task<IActionResult> Get(int? id)
+        {
+            try
+            {
+                var employee = await _appDbContext.Employees.FindAsync(id);
+                return Ok(employee);
+            }
+            catch
+            {
+                return BadRequest("error");
+            }
+        }
+    }
 }
